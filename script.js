@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const decimalOutput = document.getElementById("decimal-number");
     const copyButton = document.getElementById("copy-button");
 
-    binaryInput.value = '';
+    binaryInput.value = ''; // resets input after reload
 
     binaryInput.addEventListener("input", updateDecimalOutput);
     copyButton.addEventListener("click", copyToClipboard);
