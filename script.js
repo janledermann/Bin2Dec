@@ -10,6 +10,14 @@ document.addEventListener("DOMContentLoaded", function () {
     copyButton.addEventListener("click", copyToClipboard);
 
     function updateDecimalOutput() {
+        for (let i = 0; i < binaryInput.value.length; i++) {
+            if (binaryInput.value[i] !== '0' && binaryInput.value[i] !== '1') {
+                alert("This character is not permitted!");
+                binaryInput.value = ''; // Clear the input
+                return; // Exit the function to avoid further processing
+            }
+        }
+
         decimalOutput.innerHTML = parseInt(binaryInput.value, 2) || 0;
     }
 
@@ -28,4 +36,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         document.body.removeChild(tempTextarea);
     }
+
+    
 });
