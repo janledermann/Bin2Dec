@@ -151,6 +151,10 @@
          url("/fonts/Inter-BlackItalic.woff?v=3.19") format("woff");
   }
 
+* {
+    transition: filter .2s ease-in-out;
+}
+
 html {
     font-family: "Inter", sans-serif;
 }
@@ -161,6 +165,11 @@ body {
     height: 100%;
     justify-content: center;
     align-items: center;
+}
+
+.dark-mode {
+    filter: invert(100%) !important;
+    transition: filter .2s ease-in-out;
 }
 
 main {
@@ -247,4 +256,19 @@ footer {
 
 a, a:link, a:hover, a:visited, a:active, a:focus {
     color: initial;
+}
+
+#toggle-mode {
+    position: absolute;
+    bottom: 56px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#toggle-mode img {
+    width: 24px;
+    height: auto;
+    cursor: pointer !important;
 }
