@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const copyButton = document.getElementById("copy-button");
 
     binaryInput.value = '';
+    
 
     binaryInput.addEventListener("input", updateDecimalOutput);
 
@@ -14,6 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (binaryInput.value[i] !== '0' && binaryInput.value[i] !== '1') {
                 alert("This character is not permitted!");
                 binaryInput.value = ''; // Clear the input
+                decimalOutput.innerText = '-';
                 return; // Exit the function to avoid further processing
             }
         }
