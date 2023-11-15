@@ -151,10 +151,6 @@
          url("/fonts/Inter-BlackItalic.woff?v=3.19") format("woff");
   }
 
-* {
-    transition: filter .2s ease-in-out;
-}
-
 html {
     font-family: "Inter", sans-serif;
 }
@@ -169,7 +165,6 @@ body {
 
 .dark-mode {
     filter: invert(100%) !important;
-    transition: filter .2s ease-in-out;
 }
 
 main {
