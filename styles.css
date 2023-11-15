@@ -164,7 +164,7 @@ body {
 }
 
 .dark-mode {
-    filter: invert(100%) !important;
+    filter: invert(100%);
 }
 
 main {
