@@ -196,6 +196,7 @@ input {
     font-size: 36px;
     text-align: center;
     margin-top: 40px;
+    border-radius: 5px;
 }
 
 input:active, input:active, input:focus {
