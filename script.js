@@ -4,38 +4,39 @@ document.addEventListener("DOMContentLoaded", function () {
     const copyButton = document.getElementById("copy-button");
 
     binaryInput.value = '';
-    
 
     binaryInput.addEventListener("input", updateDecimalOutput);
-
     copyButton.addEventListener("click", copyToClipboard);
 
     function updateDecimalOutput() {
         const binaryInputArray = binaryInput.value.split('');
 
-        for (let i = 0; i < binaryInputArray.length; i++) {
-            if (binaryInputArray[i] !== '0' && binaryInputArray[i] !== '1') {
-                alert("This character is not permitted!");
-                binaryInput.value = ''; // Clear the input
-                decimalOutput.innerText = '-';
-                return; // Exit the function to avoid further processing
-            }
+        if (containsInvalidChars(binaryInputArray)) {
+            handleInvalidInput();
+            return;
         }
 
-        // Check if all characters in the binary input are '0'
-        if (binaryInputArray.every(bit => bit === '0')) {
-            decimalOutput.innerHTML = 0;
-        } else {
-            decimalOutput.innerHTML = parseInt(binaryInput.value, 2);
-        }
+        decimalOutput.innerHTML = binaryInputArray.every(bit => bit === '0') ? 0 : parseInt(binaryInput.value, 2);
     }
 
     function copyToClipboard() {
         const textToCopy = decimalOutput.innerText;
+        copyTextToClipboard(textToCopy);
+    }
 
+    function containsInvalidChars(arr) {
+        return arr.some(bit => bit !== '0' && bit !== '1');
+    }
+
+    function handleInvalidInput() {
+        alert("This character is not permitted!");
+        binaryInput.value = ''; // Clear the input
+        decimalOutput.innerText = '-';
+    }
+
+    function copyTextToClipboard(text) {
         const tempTextarea = document.createElement("textarea");
-        tempTextarea.value = textToCopy;
-
+        tempTextarea.value = text;
         document.body.appendChild(tempTextarea);
 
         tempTextarea.select();
@@ -45,6 +46,4 @@ document.addEventListener("DOMContentLoaded", function () {
 
         document.body.removeChild(tempTextarea);
     }
-
-    
 });
