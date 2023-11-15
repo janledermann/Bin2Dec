@@ -242,3 +242,7 @@ footer {
     padding: 16px 0;
     font-size: 12px;
 }
+
+a, a:link, a:hover, a:visited, a:active, a:focus {
+    color: initial;
+}

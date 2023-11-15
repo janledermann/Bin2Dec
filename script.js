@@ -11,8 +11,10 @@ document.addEventListener("DOMContentLoaded", function () {
     copyButton.addEventListener("click", copyToClipboard);
 
     function updateDecimalOutput() {
-        for (let i = 0; i < binaryInput.value.length; i++) {
-            if (binaryInput.value[i] !== '0' && binaryInput.value[i] !== '1') {
+        const binaryInputArray = binaryInput.value.split('');
+
+        for (let i = 0; i < binaryInputArray.length; i++) {
+            if (binaryInputArray[i] !== '0' && binaryInputArray[i] !== '1') {
                 alert("This character is not permitted!");
                 binaryInput.value = ''; // Clear the input
                 decimalOutput.innerText = '-';
@@ -20,7 +22,12 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
 
-        decimalOutput.innerHTML = parseInt(binaryInput.value, 2) || 0;
+        // Check if all characters in the binary input are '0'
+        if (binaryInputArray.every(bit => bit === '0')) {
+            decimalOutput.innerHTML = 0;
+        } else {
+            decimalOutput.innerHTML = parseInt(binaryInput.value, 2);
+        }
     }
 
     function copyToClipboard() {
