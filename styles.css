@@ -172,6 +172,7 @@ main {
     height: auto;
     margin: auto;
     text-align: center;
+    padding-bottom: 80px;
 }
 
 h1, h2, h3, p {
