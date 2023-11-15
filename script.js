@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
     const binaryInput = document.getElementById("binary");
     const decimalOutput = document.getElementById("decimal-number");
     const copyButton = document.getElementById("copy-button");
@@ -7,6 +7,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     binaryInput.addEventListener("input", updateDecimalOutput);
     copyButton.addEventListener("click", copyToClipboard);
+
+    const containsInvalidChars = arr => arr.some(bit => bit !== '0' && bit !== '1');
+
+    function handleInvalidInput() {
+        alert("This character is not permitted!");
+        binaryInput.value = '';
+        decimalOutput.innerText = '-';
+    }
 
     function updateDecimalOutput() {
         const binaryInputArray = binaryInput.value.split('');
@@ -21,29 +29,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function copyToClipboard() {
         const textToCopy = decimalOutput.innerText;
-        copyTextToClipboard(textToCopy);
-    }
 
-    function containsInvalidChars(arr) {
-        return arr.some(bit => bit !== '0' && bit !== '1');
-    }
+        if (decimalOutput.innerHTML !== '-') {
+            const tempTextarea = document.createElement("textarea");
+            tempTextarea.value = textToCopy;
+            document.body.appendChild(tempTextarea);
 
-    function handleInvalidInput() {
-        alert("This character is not permitted!");
-        binaryInput.value = ''; // Clear the input
-        decimalOutput.innerText = '-';
-    }
+            tempTextarea.select();
+            tempTextarea.setSelectionRange(0, 99999);
 
-    function copyTextToClipboard(text) {
-        const tempTextarea = document.createElement("textarea");
-        tempTextarea.value = text;
-        document.body.appendChild(tempTextarea);
+            document.execCommand("copy");
 
-        tempTextarea.select();
-        tempTextarea.setSelectionRange(0, 99999);
-
-        document.execCommand("copy");
-
-        document.body.removeChild(tempTextarea);
+            document.body.removeChild(tempTextarea);
+        } else {
+            alert("Can't copy if there isn't anything to copy.");
+        }
     }
 });
